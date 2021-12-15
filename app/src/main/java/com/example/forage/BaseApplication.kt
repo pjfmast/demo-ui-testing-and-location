@@ -29,6 +29,6 @@ class BaseApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        val database = ForageDatabase.getDatabase(this)
+        database = ForageDatabase.getDatabase(this)
     }
 }
