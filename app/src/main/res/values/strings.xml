@@ -27,4 +27,7 @@
     <string name="notes">Notes</string>
     <string name="save">Save</string>
     <string name="delete">Delete</string>
+
+    <string name="no_location_text">No current location</string>
+    <string name="get_my_location">Get my location</string>
 </resources>

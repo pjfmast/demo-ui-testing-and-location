@@ -30,6 +30,7 @@ import com.example.forage.databinding.FragmentAddForageableBinding
 import com.example.forage.model.Forageable
 import com.example.forage.ui.viewmodel.ForageableViewModel
 import com.example.forage.ui.viewmodel.ForageableViewModelFactory
+import com.example.forage.utils.GPSUtils
 
 
 /**
@@ -51,7 +52,7 @@ class AddForageableFragment : Fragment() {
     // Refactor the creation of the view model to take an instance of
     //  ForageableViewModelFactory. The factory should take an instance of the Database retrieved
     //  from BaseApplication
-    private val viewModel: ForageableViewModel  by activityViewModels {
+    private val viewModel: ForageableViewModel by activityViewModels {
         ForageableViewModelFactory(
             (activity?.application as BaseApplication).database.forageableDao()
         )
@@ -70,6 +71,11 @@ class AddForageableFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val id = navigationArgs.id
+        binding.getLocationButton.setOnClickListener {
+            val gpsUtil = GPSUtils.getInstance()
+            gpsUtil.findDeviceLocation(activity)
+            binding.locationAddressInput.setText("(${gpsUtil.latitude}, ${gpsUtil.longitude})")
+        }
         if (id > 0) {
 
             // TODO: Observe a Forageable that is retrieved by id, set the forageable variable,
@@ -127,7 +133,7 @@ class AddForageableFragment : Fragment() {
     }
 
     private fun bindForageable(forageable: Forageable) {
-        binding.apply{
+        binding.apply {
             nameInput.setText(forageable.name, TextView.BufferType.SPANNABLE)
             locationAddressInput.setText(forageable.address, TextView.BufferType.SPANNABLE)
             inSeasonCheckbox.isChecked = forageable.inSeason

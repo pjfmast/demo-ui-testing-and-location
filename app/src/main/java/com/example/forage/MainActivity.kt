@@ -18,12 +18,14 @@ package com.example.forage
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.forage.databinding.ActivityMainBinding
+import com.example.forage.utils.GPSUtils
 
 /**
  * A Main activity that hosts all [Fragment]s for this application and hosts the nav controller.
@@ -44,6 +46,12 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         appBarConfiguration = AppBarConfiguration(navController.graph)
         setupActionBarWithNavController(navController, appBarConfiguration)
+
+        // todo: create an instance of gpsUtils
+        val gpsUtils = GPSUtils.getInstance()
+        gpsUtils.initPermissions(this)
+        gpsUtils.findDeviceLocation(this)
+        Toast.makeText(applicationContext, "Location: ${gpsUtils.latitude}, ${gpsUtils.longitude}", Toast.LENGTH_LONG).show()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
