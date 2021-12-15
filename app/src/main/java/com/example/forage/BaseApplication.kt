@@ -24,5 +24,11 @@ import com.example.forage.data.ForageDatabase
  */
 class BaseApplication : Application() {
 
-    // TODO: provide a ForageDatabase value by lazy here
+    // provide a ForageDatabase value by lazy here
+    lateinit var database: ForageDatabase
+
+    override fun onCreate() {
+        super.onCreate()
+        val database = ForageDatabase.getDatabase(this)
+    }
 }
