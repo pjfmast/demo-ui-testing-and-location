@@ -52,6 +52,7 @@ class PersistenceInstrumentationTests {
         onView(withId(R.id.location_address_input)).perform(replaceText("Address"))
         onView(withId(R.id.notes_input)).perform(replaceText("Notes"))
         onView(withId(R.id.save_btn)).perform(click())
+
     }
 
     @Test

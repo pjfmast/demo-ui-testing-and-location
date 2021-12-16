@@ -49,6 +49,7 @@ android {
         jvmTarget = '1.8'
     }
     testOptions {
+        // Each test will run in their own instance of Instrumentation:
         execution 'ANDROIDX_TEST_ORCHESTRATOR'
     }
     buildFeatures {

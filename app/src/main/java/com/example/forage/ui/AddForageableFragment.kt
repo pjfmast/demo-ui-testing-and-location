@@ -72,9 +72,8 @@ class AddForageableFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val id = navigationArgs.id
         binding.getLocationButton.setOnClickListener {
-            val gpsUtil = GPSUtils.getInstance()
-            gpsUtil.findDeviceLocation(activity)
-            binding.locationAddressInput.setText("(${gpsUtil.latitude}, ${gpsUtil.longitude})")
+            GPSUtils.findDeviceLocation(requireActivity())
+            binding.locationAddressInput.setText("(${GPSUtils.latitude}, ${GPSUtils.longitude})")
         }
         if (id > 0) {
 

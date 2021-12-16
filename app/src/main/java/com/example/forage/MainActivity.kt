@@ -48,10 +48,13 @@ class MainActivity : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
 
         // todo: create an instance of gpsUtils
-        val gpsUtils = GPSUtils.getInstance()
-        gpsUtils.initPermissions(this)
-        gpsUtils.findDeviceLocation(this)
-        Toast.makeText(applicationContext, "Location: ${gpsUtils.latitude}, ${gpsUtils.longitude}", Toast.LENGTH_LONG).show()
+        GPSUtils.initPermissions(this)
+        GPSUtils.findDeviceLocation(this)
+        Toast.makeText(
+            applicationContext,
+            "Location: ${GPSUtils.latitude}, ${GPSUtils.longitude}",
+            Toast.LENGTH_LONG
+        ).show()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
